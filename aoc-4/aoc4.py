@@ -63,19 +63,35 @@ def score(wining_board, last_matched):
     return unmarked_sum(wining_board) * last_matched
 
 
+def bingo(board):
+    return is_row_complete(board) or is_col_complete(board)
+
+
 def part_one(boards, order):
     for num in order:
-        marked_boards = list(map(lambda board: mark_board(board, num), boards))
+        marked_boards = [mark_board(board, num) for board in boards]
         
-        row_completed = list(map(lambda board: is_row_complete(board), marked_boards))
-        if True in row_completed:
-            wining_board = boards[row_completed.index(True)]
-            return score(wining_board, num)
+        for m_board in marked_boards:
+            if bingo(m_board):
+                return score(m_board, num)
+
+
+def part_two(boards, order):
+    last_num = -1
+    won_boards = []
+    
+    for num in order:
         
-        col_completed = list(map(lambda board: is_col_complete(board), marked_boards))
-        if True in col_completed:
-            wining_board = boards[col_completed.index(True)]
-            return score(wining_board, num)
+        if len(won_boards) == len(boards): break
+        
+        marked_boards = [mark_board(board, num) for board in boards]
+        
+        for m_board in marked_boards:
+            if bingo(m_board) and m_board not in won_boards:
+                won_boards.append(m_board)
+                last_num = num    
+    
+    return score(won_boards[-1], last_num)
 
 
 def main(filename):
@@ -92,7 +108,8 @@ def main(filename):
     boards_raw = split_into_boards(data)
     boards = [get_board(i) for i in boards_raw]
     
-    print(part_one(boards, order))
+    #print(part_one(boards, order))
+    print(part_two(boards, order))
 
 if __name__ == "__main__":
     main("input")
