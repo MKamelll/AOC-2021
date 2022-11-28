@@ -1,0 +1,15 @@
+.dub
+docs.json
+__dummy.html
+docs/
+/aoc-7
+aoc-7.so
+aoc-7.dylib
+aoc-7.dll
+aoc-7.a
+aoc-7.lib
+aoc-7-test-*
+*.exe
+*.o
+*.obj
+*.lst
