@@ -1,0 +1,15 @@
+.dub
+docs.json
+__dummy.html
+docs/
+/aoc-8
+aoc-8.so
+aoc-8.dylib
+aoc-8.dll
+aoc-8.a
+aoc-8.lib
+aoc-8-test-*
+*.exe
+*.o
+*.obj
+*.lst
